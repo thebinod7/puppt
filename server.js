@@ -13,7 +13,7 @@ var users = JSON.parse(fs.readFileSync('users.json'));
 
 
 const hosturl = "http://localhost";
-const port = 3000;
+const port = 5000;
 
 
 paypal.configure({
@@ -236,6 +236,6 @@ app.post('/pay', (req, res) => {
 });
 
 
-app.listen(port, () => {
-  console.log("started server on port "+port);
+app.listen(process.env.PORT || port || 5000, () => {
+  console.log("started server");
 });
