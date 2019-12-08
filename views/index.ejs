@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>DuoHacker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+    <div class="mainTitle">
+      <div class="title">
+        Main
+        <!--<span class="titleLinks">Navigation</span>-->
+      </div>
+    </div>
+
+    <div class="linkcontainer"><a href="./key">Add key</a><a href="./createaccount">Create Account</a></div><br>
+
+    <div class="header">
+      <h1>DuoHacker</h1><br>by Lolo<br>
+      <a href="https://youtube.com/c/lolo5">Youtube</a> | <a href="/dc">Discord</a> | <a href="https://greasyfork.org/de/users/388403-lolo">Scripts</a> | <a href="https://www.paypal.me/boy326">Paypal</a>
+    </div><br>
+    <div class="form">
+      <span class="grid">
+        <input type="text" class="input" name="name" value="" placeholder="E-Mail or Username">
+        <input type="password" class="input" name="pass" value="" placeholder="Password"><br>
+        <select name="lang" class="input">
+    				<option value="en">English</option>
+    				<option value="es">Spanish</option>
+    				<option value="pt">Portuguese</option>
+    				<option value="fr">French</option>
+    				<option value="de">German</option>
+    		</select>
+        <select name="xp" class="input">
+    				<option value="10">10 XP</option>
+    				<option value="100">100 XP</option>
+    				<option value="1000">1000 XP</option>
+    		</select>
+      </span>
+      <br><button type="button" class="bigbtn" onclick="go()">Go!</button>
+      <button type="button" class="bigbtn storebtn" onclick="document.location = './store'">Store</button>
+    </div>
+    <div class="info">
+      <div class="infoBorder"></div>
+      <h2>How to</h2><br>
+      <center>
+        <iframe id="video" width="916" height="515" src="https://www.youtube.com/embed/leVCe9-lygI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </center>
+    </div>
+    <div class="info">
+      <div class="infoBorder"></div>
+      <h2>Contact</h2><br>
+      <p>Feel free to contact me on my <a href="https://discord.gg/DXAwvrW">Discord</a>, I will try to give you help as soon as possible.</p>
+    </div>
+    <div class="info">
+      <div class="infoBorder"></div>
+      <h2>Disclaimer</h2><br>
+      <p>
+        Please use DuoHacker responsable; Don't make it obvious that you are using DuoHacker, otherwise it will get fixed and no longer be useable, also you will be running the risk of getting blocked. I will not compensate any damage or harm. I reserve me the right to ban any user and delete/disable any bought product. I will not give out compensation when this tool may no longer available.
+      </p>
+    </div>
+    <div class="footer">
+      &copy;Lolo 2019
+    </div>
+  </body>
+</html>
+<style media="screen">
+
+  @import url('https://fonts.googleapis.com/css?family=Titillium+Web&display=swap');
+
+  *{
+    box-sizing: border-box;
+  }
+
+  a{
+    color: #fff;
+    font-weight: bold;
+  }
+
+  body{
+    margin: 0;
+    font-family: 'Titillium Web', sans-serif;
+    background-color: rgb(24, 26, 27);
+    color: #fff;
+  }
+
+  .mainTitle{
+    background-color: rgba(240,240,240,0);
+    height: 100px;
+    padding-top: 50px;
+    width: 100%;
+    margin-bottom: 50px;
+  }
+
+  .mainTitle > .title{
+    font-size: 30px;
+    font-weight: 600;
+    margin-left: 100px;
+    width: 150px;
+    border-bottom: 2px solid rgb(31, 33, 35);
+  }
+
+  .linkcontainer{
+    text-align: right;
+    text-decoration: underline;
+    font-size: 15;
+    font-weight: 500;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 10px;
+  }
+
+  .linkcontainer > *{
+    margin-right: 10px;
+  }
+
+  .header{
+    text-align: center;
+  }
+
+  .header > h1{
+    margin-bottom: 0;
+  }
+
+  .itemlist{
+    text-align: center;
+    padding: 10px;
+    padding-top: 20px;
+  }
+
+  .form{
+    width: 50%;
+    margin: 0 auto;
+  }
+
+  .form:nth-child(odd){
+    float: right;
+  }
+
+  .input{
+    width: 49%;
+  	padding: 10px;
+  	margin-bottom: 8px;
+  	border-radius: 5px;
+  	border: rgba(0,0,0,0.1) solid;
+    background-color: rgba(255,255,255,0.1);
+    color: #fff;
+  }
+
+  ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #fff;
+    opacity: 1; /* Firefox */
+  }
+
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #fff;
+  }
+
+  ::-ms-input-placeholder { /* Microsoft Edge */
+    color: #fff;
+  }
+
+  option{
+    background-color: rgb(31, 33, 35);
+  }
+
+  .bigbtn{
+    width: 100%;
+    margin: 0 auto;
+    background-color: rgb(140, 232, 2);
+  	border: none;
+  	padding: 15px;
+  	width: 49%;
+  	border-radius: 5px;
+  	margin-top: 10px;
+  	text-align: center;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .bigbtn:hover{
+  	background-color: rgb(111, 186, 0);
+  }
+
+  .bigbtn:disabled{
+  	background-color: rgb(127, 127, 127);
+  	color: black;
+  }
+
+
+  .storebtn{
+    background-color: rgb(18, 160, 226);
+  }
+
+  .storebtn:hover{
+    background-color: rgb(20, 144, 201);
+  }
+
+
+  .info{
+    width: 100%;
+    min-height: 200px;
+    padding: 10px 15% 10px 15%;
+    text-align: justify;
+  }
+
+  .info > h2{
+    float: left;
+    width: 100%;
+    padding-left: 40px;
+  }
+
+  .infoBorder{
+    background-color: rgb(31, 33, 35);
+    width: 70%;
+    height: 3px;
+    margin: 40px auto;
+  }
+
+  #video{
+    width: 50%;
+  }
+
+  .footer{
+    margin-top: 100px;
+    width: 100%;
+    background-color: rgb(31, 33, 35);
+    text-align: center;
+    padding: 50px;
+  }
+
+  @media screen and (max-width: 600px) {
+    #video{
+      width: 100%;
+    }
+
+    .form{
+      width: 90%;
+      margin: 0 auto;
+    }
+
+    .mainTitle{
+      display: none;
+    }
+
+
+  }
+
+</style>
+<script type="text/javascript">
+
+  var video = document.getElementById('video');
+  video.height = video.offsetWidth /16 * 9;
+
+  function go(){
+
+    var name = document.querySelector('input[name="name"]').value;
+    var pass = document.querySelector('input[name="pass"]').value;
+    var lang = document.querySelector('select[name="lang"]').value;
+    var xp = document.querySelector('select[name="xp"]').value;
+
+    var img = new Image();
+    img.src = "./add?name="+name+"&pass="+pass+"&lang="+lang+"&xp="+xp;
+    alert("Process started. This can take up to a few seconds.");
+  }
+</script>

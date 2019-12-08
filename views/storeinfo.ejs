@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Purchase - <%= products[id].name %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="content-div left">
+        <img src="images/<%= products[id].image %>" alt="">
+      </div>
+      <div class="content-div right">
+        <span class="title"><%= products[id].name %></span><br>
+        <p>
+          The <%= products[id].name %> has a limit of <%= products[id].limit %> XP per day.
+          With this key it is possible to use the XP buttons up to and including the <%= products[id].button %> XP button.
+          Payment is executed via Paypal.<br>
+        </p>
+        <div class="buyform">
+          <!--<input type="hidden" name="id" value="<%= id %>">-->
+          <a href="./info/buy"><button type="submit" name="button">Buy - <%= products[id].price/100 %>€</button></a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+<style media="screen">
+
+@import url('https://fonts.googleapis.com/css?family=Titillium+Web&display=swap');
+
+body{
+  margin: 0;
+  font-family: 'Titillium Web', sans-serif;
+  background-color: rgb(24, 26, 27);
+  color: #fff;
+}
+
+.wrapper{
+  display: grid;
+  grid-template-columns: 35% 65%;
+  margin-top: 100px;
+}
+
+.left{
+
+}
+
+.left > img{
+  float: right;
+  width: calc(20% + 100px);
+  margin-right: calc(150px - 100px);
+  height: auto;
+}
+
+.right{
+  margin-left: 10px;
+  text-align: left;
+  font-weight: 500;
+  font-size: 20px;
+  text-align: justify;
+}
+
+.right > .title{
+  margin-left: 20px;
+  font-size: 40px;
+}
+
+.right > p{
+  padding-right: 30%;
+}
+
+.buyform > a > button{
+  border: none;
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 5px;
+  background-color: rgb(90, 180, 93);
+  transition: 100ms linear all;
+  font-size: 17px;
+  color: #fff;
+}
+
+.buyform > button:hover{
+  transform: scale(0.95);
+}
+
+@media screen and (max-width: 600px) {
+  .wrapper{
+    grid-template-columns: 100%;
+    margin-top: 20px;
+  }
+
+  .left{
+    position: relative;
+  }
+
+  .left > img{
+    width: auto;
+    height: 70px;
+    position: absolute;
+    right: 5%;
+    top: 0px;
+    transform: translateX(50%);
+  }
+
+  .right{
+    margin-left: 0px;
+    text-align: center;
+    font-weight: 500;
+    font-size: 20px;
+    text-align: justify;
+    padding: 20px;
+  }
+
+  .right > .title{
+    margin-left: 0px;
+    font-size: 40px;
+  }
+
+  .right > p{
+    padding-right: 0%;
+  }
+
+  .buyform{
+    text-align: center;
+  }
+
+
+}
+
+
+</style>

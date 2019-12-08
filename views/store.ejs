@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Store - DuoHacker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+    <div class="mainTitle">
+      <div class="title">
+        Store
+        <!--<span class="titleLinks">Navigation</span>-->
+      </div>
+    </div>
+    <div class="itemlist">
+      <% products.forEach(function(item){ %>
+      <div class="storeitem" onclick="buy(<%= item.id %>);">
+        <img src="images/<%= item.image %>"/><br>
+        <div class="productBorder"></div>
+        <b class="productName"><%= item.name %></b><br>
+        <p class="productPrice"><%= item.price/100 %>€</p>
+      </div>
+      <% }) %>
+    </div>
+    <div class="info">
+      <div class="infoBorder"></div>
+      <h2>Informations</h2><br>
+      <p>DuoHacker is a tool to get unlimited XP on Duolingo. Access to DuoHacker requires a key, which you a able to buy in the store. There are diffrent keys with diffrent possibilities and limits, but before actually buying a key you get the chance to try out DuoHacker by requesting a <b>trial key</b>, which is totally free, but with a limit of <%= products[0].limit %> XP per day and validity of 24 hours, which will start counting right after receiving the key. The <b>Common Key</b> has a limit of <%= products[1].limit %> XP per day and like the other paid keys won't expire. The <b>Special Key</b> has a limit of <%= products[2].limit %> XP per day and the <b>Admin Key</b> <%= products[3].limit %> XP per day, what is more than you would ever need.</p>
+    </div>
+    <div class="info">
+      <div class="infoBorder"></div>
+      <h2>Contact</h2><br>
+      <p>Feel free to contact me on my <a href="https://discord.gg/DXAwvrW">Discord</a>, I will try to give you help as soon as possible.</p>
+    </div>
+    <div class="footer">
+      &copy;Lolo 2019
+    </div>
+  </body>
+</html>
+<script type="text/javascript">
+
+  function buy(id){
+
+    const form = document.createElement('form');
+    form.method = "post";
+    form.action = "./info";
+
+    const hiddenField = document.createElement('input');
+    hiddenField.type = 'hidden';
+    hiddenField.name = "id";
+    hiddenField.value = id;
+
+    form.appendChild(hiddenField);
+
+    document.body.appendChild(form);
+    form.submit();
+  }
+
+</script>
+<style media="screen">
+
+  @import url('https://fonts.googleapis.com/css?family=Titillium+Web&display=swap');
+
+  *{
+    box-sizing: border-box;
+  }
+
+  a{
+    color: #fff;
+    font-weight: bold;
+  }
+
+  body{
+    margin: 0;
+    font-family: 'Titillium Web', sans-serif;
+    background-color: rgb(24, 26, 27);
+    color: #fff;
+  }
+
+  .mainTitle{
+    background-color: rgba(240,240,240,0);
+    height: 100px;
+    padding-top: 50px;
+    width: 100%;
+    margin-bottom: 50px;
+  }
+
+  .mainTitle > .title{
+    font-size: 30px;
+    font-weight: 600;
+    margin-left: 100px;
+    width: 150px;
+    border-bottom: 2px solid rgb(31, 33, 35);
+  }
+
+  .titleLinks{
+    text-decoration: underline;
+    font-size: 15;
+    font-weight: 500;
+    float: right;
+  }
+
+  .itemlist{
+    text-align: center;
+    padding: 10px;
+    padding-top: 20px;
+  }
+
+  .storeitem{
+    background-color: rgba(250,250,250,0.1);
+    box-shadow: 0px 0px 5px 1px rgba(160,160,160,0.5);
+    width: 250px;
+    height: 300px;
+    text-align: center;
+    padding: 10px;
+    margin: 10px;
+    transition: 100ms linear all;
+    float: center;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+    display: inline-block;
+    position: relative;
+  }
+
+  .storeitem:hover{
+    transform: scale(1.02);
+    box-shadow: 0px 0px 5px 1px rgba(160,160,160,0.7);
+  }
+
+  .storeitem > img{
+    width: 100px;
+    height: 100px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+  }
+
+  .storeitem > .productBorder{
+    width: 80%;
+    height: 3px;
+    background-color: rgba(200,200,200,1);
+    margin: 10px auto;
+    margin-bottom: 25px;
+  }
+
+  .info{
+    width: 100%;
+    min-height: 200px;
+    padding: 10px 15% 10px 15%;
+    text-align: justify;
+  }
+
+  .info > h2{
+    float: left;
+    width: 100%;
+    padding-left: 40px;
+  }
+
+  .infoBorder{
+    background-color: rgb(31, 33, 35);
+    width: 70%;
+    height: 3px;
+    margin: 40px auto;
+  }
+
+  .footer{
+    margin-top: 100px;
+    width: 100%;
+    background-color: rgb(31, 33, 35);
+    text-align: center;
+    padding: 50px;
+  }
+
+</style>
