@@ -7,6 +7,7 @@ const app = express();
 //files
 const bot = require('./bot/start.js');
 const products = require("./products.js");
+const adminpassword = require("./adminpassword.js");
 var keylist = fs.readFileSync('keylist.js').toString().split(",");
 var users = JSON.parse(fs.readFileSync('users.json'));
 
@@ -82,15 +83,13 @@ app.post('/key', (req, res) => {
     console.log(keylist[index]);
     if(_key == key){
       users.forEach(user => {
-        if(user.key != "none"){
-          if(user.name == name && user.pass == pass){
-            if(user.key < keyvalue){
-              user.key = keyvalue;
-              writeUsers();
-              keylist.splice(index, 1);
-              writeKeylist();
-              res.send('succes');
-            }
+        if(user.name == name && user.pass == pass){
+          if(user.key == "none" || user.key < keyvalue){
+            user.key = keyvalue;
+            writeUsers();
+            keylist.splice(index, 1);
+            writeKeylist();
+            res.send('succes');
           }
         }
       });
@@ -153,6 +152,32 @@ app.post('/store/info', (req, res) => {
 
 app.get('/store/info/buy', (req, res) => {
   res.render('storeinfobuy.ejs');
+});
+
+
+
+app.get('/admin/key', (req, res) => {
+  res.render('adminlogin.ejs');
+});
+
+app.post('/admin/key', (req, res) => {
+  if(req.body.pass){
+    if(req.body.pass == adminpassword){
+      res.render('createkey.ejs', {
+        keys: keylist
+      });
+    }else{
+      res.render('adminlogin.ejs');
+    }
+  }else if(req.body.key){
+    keylist += req.body.key+",";
+    writeKeylist();
+    res.render('createkey.ejs', {
+      keys: keylist
+    });
+  }else{
+    res.render('adminlogin.ejs');
+  }
 });
 
 

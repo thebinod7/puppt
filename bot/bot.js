@@ -12,7 +12,7 @@ const bot = {
   initialize: async() => {
 
     bot.browser = await puppeteer.launch({
-      headless: true
+      headless: false
     });
     bot.page = await bot.browser.newPage();
 
