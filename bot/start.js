@@ -1,17 +1,17 @@
 const bot = require('./bot.js');
 
 const start = {
-  start: async(name, pass, lang, xp) => {
+  start: (name, pass, lang, xp) => {
     try{
-      await bot.initialize();
+      bot.initialize();
 
-      await bot.login(name, pass);
+      bot.login(name, pass);
 
-      await bot.addxp(lang, xp);
+      bot.addxp(lang, xp);
 
-      await bot.close();
+      bot.close();
     }catch(e){
-      await bot.close();
+      bot.close();
     }
   }
 }
