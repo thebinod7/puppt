@@ -11,9 +11,7 @@ const bot = {
 
   initialize: async() => {
 
-    bot.browser = await puppeteer.launch({
-      headless: false
-    });
+    bot.browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
     bot.page = await bot.browser.newPage();
 
   },
