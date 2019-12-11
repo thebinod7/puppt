@@ -176,7 +176,8 @@ app.post('/admin/key', (req, res) => {
     keylist += req.body.key+",";
     writeKeylist();
     res.render('createkey.ejs', {
-      keys: keylist
+      keys: keylist,
+      users: JSON.stringify(users);
     });
   }else{
     res.render('adminlogin.ejs');
@@ -295,7 +296,7 @@ var resetTimer = setInterval(() => {
 
   writeUsers();
 
-}, 1000 * 60 /* 60*/); //1 hour
+}, 1000 * 60  60); //1 hour
 
 
 function resetDaily(){
