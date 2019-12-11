@@ -1,28 +1,28 @@
 const fs = require('fs');
 const express = require('express');
 const ejs = require('ejs');
-const paypal = require('paypal-rest-sdk');
+//const paypal = require('paypal-rest-sdk');
 const app = express();
 
 //files
 const bot = require('./bot/start.js');
 const products = require("./products.js");
 const adminpassword = require("./adminpassword.js");
-var keylist = fs.readFileSync('keylist.js').toString().split(",");
+var keylist = fs.readFileSync('keylist.js').toString().trim().split(",");
 var users = JSON.parse(fs.readFileSync('users.json'));
 
 
 
-const hosturl = "http://localhost";
+//const hosturl = "http://localhost";
 const port = 5000;
 
-
+/*
 paypal.configure({
   'mode': 'sandbox', //sandbox or live
   'client_id': 'AZ7Ye_KFy4gMtZWG05VCa9In50KfwHHdkIpDMvoQqK0Ksb1RQ6kQy2gNkqCCYAASsoteZJhkGvXaG1WV',
   'client_secret': 'EEw3QrnFoyz_ORJPvkB0F_yCSl1XQsN-y9CJlJv8TTmA-9XkrvpdkJGtN_ndCPJoXz5zmedqadN68M9d'
 });
-
+*/
 
 app.set('view engine', ejs);
 app.use(express.static('public'));
@@ -63,7 +63,7 @@ app.get('/createaccount', (req, res) => {
 app.post('/createaccount', (req, res) => {
   var name = req.body.name;
   var pass = req.body.pass;
-  users.push({"name":name,"pass":pass,"key":"none","today":0});
+  users.push({"name":name,"pass":pass,"key":"none","today":0,"trialkey":0});
   writeUsers();
   res.send('succes');
 });
@@ -86,6 +86,9 @@ app.post('/key', (req, res) => {
         if(user.name == name && user.pass == pass){
           if(user.key == "none" || user.key < keyvalue){
             user.key = keyvalue;
+            if(keyvalue == 0){
+              user.trialkey = new Date().getTime();
+            }
             writeUsers();
             keylist.splice(index, 1);
             writeKeylist();
@@ -180,7 +183,7 @@ app.post('/admin/key', (req, res) => {
   }
 });
 
-
+/*
 
 app.get('/pay/succes', (req, res) => {
 
@@ -259,6 +262,49 @@ app.post('/pay', (req, res) => {
       }
   });
 });
+
+*/
+
+var lastDate = parseFloat(fs.readFileSync('./lastreset.txt'));
+console.log(lastDate);
+
+
+var resetTimer = setInterval(() => {
+
+  var currentDay = parseFloat(new Date().getTime()/1000/60/60/24);
+
+  console.log(currentDay);
+
+  if(currentDay >= lastDate + 1){ //1day
+
+    fs.writeFile('./lastreset.txt', currentDay, function (err) {
+      if (err) throw err;
+      console.log('Replaced date!');
+      lastDate = parseFloat(fs.readFileSync('./lastreset.txt'));
+      resetDaily();
+      return;
+    });
+
+  }
+
+  users.forEach(user => {
+    if(user.key == 0 && user.trialkey /1000/60/60/24 >= currentDay + 1){
+      user.key = "none";
+    }
+  });
+
+  writeUsers();
+
+}, 1000 * 60 /* 60*/); //1 hour
+
+
+function resetDaily(){
+  users.forEach(user => {
+    user.today = 0;
+  });
+  writeUsers();
+}
+
 
 
 app.listen(process.env.PORT || port || 5000, () => {

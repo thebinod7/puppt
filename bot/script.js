@@ -40,7 +40,11 @@ module.exports = function(){
       var data;
 
       data = JSON.stringify({"score":0,"maxScore":0,"awardXp":true,"extraXp":0,"numHintsUsed":0,"startTime":currenttime,"storyXpLevel":"normal"});
-      if(wantedxp == 100){
+      if(wantedxp == 12){
+          data = JSON.stringify({"score":1,"maxScore":0,"awardXp":true,"extraXp":0,"numHintsUsed":0,"startTime":currenttime,"storyXpLevel":"normal"});
+      }else if(wantedxp == 14){
+          data = JSON.stringify({"score":2,"maxScore":5,"awardXp":true,"extraXp":0,"numHintsUsed":0,"startTime":currenttime,"storyXpLevel":"normal"});
+      }else if(wantedxp == 100){
           data = JSON.stringify({"score":45,"maxScore":0,"awardXp":true,"extraXp":0,"numHintsUsed":0,"startTime":currenttime,"storyXpLevel":"normal"});
       }else if(wantedxp == 1000){
           data = JSON.stringify({"score":495,"maxScore":0,"awardXp":true,"extraXp":0,"numHintsUsed":0,"startTime":currenttime,"storyXpLevel":"normal"});

@@ -13,7 +13,7 @@ module.exports = [
     "price": 300,
     "limit": 3000,
     "image": "silver.svg",
-    "button": 10
+    "button": 14
   },
   {
     "name": "Special Key",
